@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>zinrou_game</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h2>格ゲーマー人狼</h2>
+  <!-- <h5> -->
+  <div id="settei">
+    <select id="hito">
+      <!-- <option value="">-</option> -->
+      <!-- <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option> -->
+      <option value="9" selected>9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <!-- <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option> -->
+    </select>
+    <button id="select">人数設定</button>
+    <div class="tyuui">※11人以上の村から人狼が3人になります。</div>
+    <!-- </h5> -->
+  </div>
+  <div id="ninzuu"></div>
+  <div id="cast" class="palette">
+    <p>
+      <input type="text" id="text_name" value="ガチくん"><button id="menber_list">追加</button>
+    </p>
+    <p id="output"></p>
+  </div>
+  <div id="job" class="palette">
+    <p>メンバーが揃ったら開始</p><button id="job_list">一括抽選</button>
+    <p id="kisi">騎士:</p>
+    <p id="reibai">霊媒:</p>
+    <p id="kyouzin">狂人:</p>
+    <p id="uranai">占い:</p>
+    <p id="zinrou">人狼:</p>
+  </div>
+  <script src="js/main.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>
+</body>
+
+</html>
