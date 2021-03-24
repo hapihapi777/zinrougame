@@ -7,7 +7,7 @@
   btn1.addEventListener('click', addName);
   let btn2 = document.getElementById('job_list');
   btn2.disabled = true;
-  btn2.addEventListener('click', getJob);
+  btn2.addEventListener('click', GetJob);
 
 
   // テスト中なので８人入った状態です
@@ -26,7 +26,7 @@
   // ボタン１を押したら実行
   function addName() {
     // 配列を返す関数
-    let namelist = getMenber();
+    let namelist = GetMenber();
 
     let input = document.getElementById("text_name");
     let output = document.getElementById("output");
@@ -72,7 +72,7 @@
   }
 
   // 配列の更新
-  function getMenber() {
+  function GetMenber() {
     let p = document.getElementById('text_name').value;
     menber_list.push(p);
     console.log(menber_list);
@@ -80,7 +80,7 @@
   }
 
   // btn2実行
-  function getJob() {
+  function GetJob() {
     let menber = shuffle(menber_list);
     console.log(menber_list);
 
@@ -90,22 +90,39 @@
     let uranai = document.getElementById('uranai');
     let zinrou = document.getElementById('zinrou');
 
+    // let junban = document.getElementById('junban');
+
     kisi.textContent = "騎士: " + menber[0];
     reibai.textContent = "霊媒: " + menber[1];
     kyouzin.textContent = "狂人: " + menber[2];
 
     let N = menber.length;
-    if(N > 10) {
+    if (N > 10) {
       let uranaisaki = Math.floor(Math.random() * (N - 4));
       console.log(uranaisaki);
       uranai.textContent = "占い: " + menber[N - 4] + "  [占い先 > " + menber[uranaisaki] + "]";
-      zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 3] + ", " + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます" ;
-    }else{
+      zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 3] + ", " + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます";
+    } else {
       let uranaisaki = Math.floor(Math.random() * (N - 3));
       console.log(uranaisaki);
       uranai.textContent = "占い: " + menber[N - 3] + "  [占い先 > " + menber[uranaisaki] + "]";
-      zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます" ;
+      zinrou.innerHTML = "人狼: " + menber[N - 2] + ", " + menber[N - 1];
+      // zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます" ;
     }
+
+    GetJunban(menber_list);
+  }
+
+  function GetJunban(array) {
+    let junban = document.getElementById('junban');
+    let menber = shuffle(array);
+    let result = [];
+
+    for (let i = 0; i < array.length; i++) {
+      result.push(" " + (i + 1) + ":" + menber[i]);
+    }
+    junban.textContent = result;
+    // return result;
   }
 
   function shuffle(arr) {

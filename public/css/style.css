@@ -63,5 +63,8 @@ option {
   font-size: 12px;
 }
 
+.inline {
+  display:  inline;
+}
 
 
