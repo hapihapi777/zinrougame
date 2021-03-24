@@ -1,0 +1,70 @@
+.palette {
+  margin: 8px;
+  border: 2px dotted #ccc;
+  border-radius: 8px;
+  padding: 8px; 
+}
+#menber_list {
+  /* padding: 8px; */
+  margin: 8px;
+}
+.palette{
+  padding: 8px;
+  margin: 8px;
+  color: black;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+/* #kisi{
+  color: red;
+}
+#reibai{
+  color: red;
+} */
+#kyouzin{
+  color: orange;
+}
+#uranai{
+  color: blue;
+}
+#zinrou{
+  color: red;
+}
+
+.red {
+  color: red;
+}
+.dis {
+  color: #ffffff;
+}
+
+#settei {
+  margin: 8px;
+  padding: 8px;
+  font-size: 20px;
+}
+
+option {
+  font-size: 16px;
+}
+
+#select {
+  margin: 8px;
+  /* padding: 8px; */
+  font-size: 16px;
+}
+#ninzuu {
+  margin: 8px;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.tyuui {
+  font-size: 12px;
+}
+
+.inline {
+  display:  inline;
+}
+
+
