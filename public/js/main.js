@@ -5,7 +5,7 @@
   let btn1 = document.getElementById('menber_list');
   btn1.disabled = true;
   btn1.addEventListener('click', addName);
-  let btn2 = document.getElementById('job_list');
+  let btn2 = document.getElementById('job_btn');
   btn2.disabled = true;
   btn2.addEventListener('click', GetJob);
 
