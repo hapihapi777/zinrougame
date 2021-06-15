@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>zinrou_game</title>
+ <title>Document</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+
   <h2>格ゲーマー人狼</h2>
   <!-- <h5> -->
-  <div id="settei" class="">
-    <select id="hito">
-      <!-- <option value="">-</option> -->
-      <!-- <option value="5">5</option>
+  <div id="setting">
+    <select id="hito" class="select">
+      <!-- <option value="">-</option>
+      <option value="5">5</option>
       <option value="6">6</option>
       <option value="7">7</option>
       <option value="8">8</option> -->
@@ -27,36 +26,52 @@
       <option value="15">15</option>
       <option value="16">16</option> -->
     </select>
-    <button id="select">人数設定</button>
+    <button id="select" class="">人数設定</button>
     <div class="tyuui">※11人以上の村から人狼が3人になります。</div>
-    <!-- </h5> -->
   </div>
-  <div id="ninzuu"></div>
-  <div id="cast" class="palette">
-    <p>
-      <input type="text" id="text_name" value="ガチくん"><button id="menber_list">追加</button>
-    </p>
-    <p id="output" class="job_list"></p>
+  
+  <div id="number_of_people"></div>
+
+  <div id="parent" class="container nodisp">
+
+    <div id="member_btns" class="item2">
+      <input type="button" id="addmember" class="addition" value="確認ボタン">
+      <input type="button" id="member_decision" class="addition" value="決定">
+    </div>
+    <ul id="verification" class="item5">
+
+    </ul>
   </div>
-  <div id="job" class="palette">
-    <p>メンバーが揃ったら開始</p><button id="job_btn">一括抽選</button>
-    <p id="kisi" class="job_list">騎士:</p>
-    <p id="reibai" class="job_list">霊媒:</p>
-    <p id="kyouzin" class="job_list">狂人:</p>
-    <p id="uranai" class="job_list">占い:</p>
-    <p id="zinrou" class="job_list">人狼:</p>
-    <div class="job_list">順番: <div id="junban" class="inline"></div></div>
+  <div id="first_village" class="container nodisp">
+    <div>一戦目</div>
+
+    <div id="" class="item2">
+      <div>
+        <input type="button" id="casting_1" class="addition" value="配役">
+      </div>
+      <div id="job_1_0">【役職１】</div>
+      <div id="job_1_1">【役職２】</div>
+      <div id="job_1_2">【役職３】</div>
+      <div id="job_1_3">【役職４】</div>
+      <div id="zinrou">【人狼】</div>
+
+    </div>
+    <ul id="first_member" class="item5">
+
+    </ul>
   </div>
+  
+
+  <!-- <script src="js/function.js"></script> -->
   <script src="js/main.js"></script>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.2.1/firebase-app.js"></script>
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
-
-  <!-- Initialize Firebase -->
-  <script src="/__/firebase/init.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.2.1/firebase-analytics.js"></script>
+  
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
 </body>
-
 </html>

@@ -1,128 +1,177 @@
+
+
 'use strict';
 {
-  let btn0 = document.getElementById('select');
-  btn0.addEventListener('click', setNinzuu);
-  let btn1 = document.getElementById('menber_list');
-  btn1.disabled = true;
-  btn1.addEventListener('click', addName);
-  let btn2 = document.getElementById('job_btn');
-  btn2.disabled = true;
-  btn2.addEventListener('click', GetJob);
+  // let member_list = GetMember();
 
+  const select = document.getElementById('select');
+  select.addEventListener('click', Initial_action);
+  const addmember = document.getElementById("addmember");
+  addmember.addEventListener('click', ButtonMotion);
+  const member_decision = document.getElementById("member_decision");
+  member_decision.addEventListener('click', GameStart);
+  const casting_1 = document.getElementById("casting_1");
+  casting_1.addEventListener('click', GetJob);
 
-  // テスト中なので８人入った状態です
-  // テスト終了後は空にする
-  let menber_list = [
-    "ウメハラ",
-    "マゴ",
-    "ふ〜ど",
-    "ボンちゃん",
-    "どぐら",
-    "ナウマン",
-    "シュート",
-    "えいた",
-  ];
+  // チェックボックスと<div>要素と削除ボタンをn人数分IDかclass付きで作る
+  // チェックが入ったら削除ボタンを有効にする
+  // 削除ボタンを押した人を削除して配列を詰める
 
-  // ボタン１を押したら実行
-  function addName() {
-    // 配列を返す関数
-    let namelist = GetMenber();
+  // ボタンの関数を分ける
 
-    let input = document.getElementById("text_name");
-    let output = document.getElementById("output");
-    // namelist.push(input.value);// 配列に要素を追加
-    output.textContent = "";
+  // 初動
+  function Initial_action() {
+    const setting = document.getElementById("setting");
+    setting.classList.add("nodisp");
 
-    // 配列の要素を先頭から順番にすべて出力
-    let i = 0;
-
-
-    let ninzuu = setNinzuu();
-    console.log(setNinzuu());
-    while (i < namelist.length) {
-      output.textContent += (i + 1) + ":" + namelist[i] + " ";
-      i = i + 1;
-      if (namelist.length >= ninzuu) {
-        btn1.disabled = true;
-        btn2.disabled = false;
-      }
+    const ninzuu = parseInt(document.getElementById("hito").value);
+    document.getElementById('number_of_people').textContent = "今回は" + ninzuu + "人村";
+    for (let i = 1; i <= ninzuu; i++) {
+      addForm(i);
     }
-    // console.log(namelist);
-    input.value = "";
+
+    MakeList("verification");
+    MakeList("first_member");
+
+    member_decision.disabled = true;
+
+    const select = document.getElementById("select");
+    select.disabled = true;
+    const parent = document.getElementById("parent");
+    parent.classList.remove('nodisp');
   }
 
-  // 人数セット
-  // ラジオボタンの操作
-  // function setNinzuu() {
-  // 
-  // }
+  function MakeList(id) {
+    const place = document.getElementById(id);
+    const ninzuu = parseInt(document.getElementById("hito").value);
 
-  // セレクトメニュー
-  function setNinzuu() {
-    btn0.disabled = true;
-    let obj = document.getElementById('hito');
-    // // 選択されている値の番号を取得
-    let idx = obj.selectedIndex;
-    // // 値を取得
-    let txt = obj.options[idx].text;
-    // // 表示
-    document.getElementById('ninzuu').textContent = "今回は" + txt + "人村となります";
-    btn1.disabled = false;
-    return parseInt(txt);
+    for (let i = 0; i < ninzuu; i++) {
+      const new_li = document.createElement("li");
+      // new_li.id = "li" + i;
+      // new_li.classList.add("item5");
+      place.appendChild(new_li);
+    }
+
   }
 
-  // 配列の更新
-  function GetMenber() {
-    let p = document.getElementById('text_name').value;
-    menber_list.push(p);
-    console.log(menber_list);
-    return menber_list;
+  // input作成関数
+  function addForm(num) {
+    const input_data = document.createElement('input');
+    input_data.type = 'search';
+    input_data.id = 'inputform_' + num;
+    input_data.classList.add("item5");
+    input_data.name = "member_name";
+    // input_data.placeholder = num + "人目";
+    input_data.value = num + "人目"; //テスト用入力値の設定
+
+    const parent = document.getElementById('parent');
+    const member_btns = document.getElementById('member_btns');
+    parent.insertBefore(input_data, member_btns);
   }
 
-  // btn2実行
-  function GetJob() {
-    let menber = shuffle(menber_list);
-    console.log(menber_list);
+  // ボタン関数(人数確定とliに書き込み)
+  function ButtonMotion() {
+    const verification = document.getElementById("verification");
 
-    let kisi = document.getElementById('kisi');
-    let reibai = document.getElementById('reibai');
-    let kyouzin = document.getElementById('kyouzin');
-    let uranai = document.getElementById('uranai');
-    let zinrou = document.getElementById('zinrou');
+    const member_list = GetMember();
+    let str = "";
+    for (let i = 0; i < member_list.length; i++) {
+      str = (i + 1) + ": " + member_list[i];
+      let list = verification.querySelectorAll("li")[i];
+      list.textContent = str;
+    }
 
-    // let junban = document.getElementById('junban');
+    casting_1.disabled = true;
+  }
 
-    kisi.textContent = "騎士: " + menber[0];
-    reibai.textContent = "霊媒: " + menber[1];
-    kyouzin.textContent = "狂人: " + menber[2];
+  function GetMember() {
+    const ninzuu = parseInt(document.getElementById("hito").value);
 
-    let N = menber.length;
-    if (N > 10) {
-      let uranaisaki = Math.floor(Math.random() * (N - 4));
-      console.log(uranaisaki);
-      uranai.textContent = "占い: " + menber[N - 4] + "  [占い先 > " + menber[uranaisaki] + "]";
-      zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 3] + ", " + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます";
+    const member_list = [];
+    for (let i = 0; i < ninzuu; i++) {
+      let p_i = document.getElementsByName("member_name")[i].value;
+      member_list.push(p_i);
+    }
+    if (member_list.indexOf("") !== -1) {
+      console.log("kara");
+      member_decision.disabled = true;
     } else {
-      let uranaisaki = Math.floor(Math.random() * (N - 3));
-      console.log(uranaisaki);
-      uranai.textContent = "占い: " + menber[N - 3] + "  [占い先 > " + menber[uranaisaki] + "]";
-      zinrou.innerHTML = "人狼: " + menber[N - 2] + ", " + menber[N - 1];
-      // zinrou.innerHTML = "人狼: " + "<span class= 'dis'>" + menber[N - 2] + ", " + menber[N - 1] + '</span>' + "←隠してます" ;
+      member_decision.disabled = false;
     }
+    console.log(member_list);
 
-    GetJunban(menber_list);
+    return member_list;
+    // console.log(member_list);
   }
 
-  function GetJunban(array) {
-    let junban = document.getElementById('junban');
-    let menber = shuffle(array);
-    let result = [];
+  function GameStart() {
+    const first_village = document.getElementById("first_village");
+    first_village.classList.remove('nodisp');
 
-    for (let i = 0; i < array.length; i++) {
-      result.push(" " + (i + 1) + ":" + menber[i]);
+    // const member_decision = document.getElementById("member_decision");
+    member_decision.disabled = true;
+    casting_1.disabled = false;
+
+    // MakeList("first_member");
+    // GetJob("first_member");
+    // GetJob("job_1_0");
+  }
+
+  function GetJob() {
+    let member_list = GetMember();
+    member_decision.disabled = true;
+    let this_member_list = [];
+    this_member_list = this_member_list.concat(shuffle(member_list));
+    console.log(this_member_list);
+
+    let N = this_member_list.length;
+    let zinrou = ["【人狼】"];
+    zinrou.push(this_member_list[0], this_member_list[1]);
+    this_member_list.splice(0, 2);
+    if (N > 10) {
+      zinrou.push(this_member_list[0]);
+      this_member_list.shift();
     }
-    junban.textContent = result;
-    // return result;
+
+    let this_job = [["【騎士】"], ["【ハンター】"], ["【サイコキラー】"], ["【占い師】"]];
+    shuffle(this_job);
+
+    const text_place = ["job_1_0", "job_1_1", "job_1_2", "job_1_3"];
+    for (let i = 0; i < this_job.length; i++) {
+      let str = "";
+      this_job[i].push(this_member_list[i]);
+      if (this_job[i][0] === "【占い師】") {
+        this_member_list.splice(i, 1);
+        console.log(this_member_list.length);
+        this_job[i].push("(占い先 > " + this_member_list[Math.floor(Math.random() * (this_member_list.length - 1))] + ")");
+      }
+      for (let j = 0; j < this_job[i].length; j++) {
+        str += " " + this_job[i][j];
+      }
+      document.getElementById(text_place[i]).textContent = str;
+    }
+    shuffle(this_job);
+
+    let zinrou_member = "";
+    zinrou.forEach(e => zinrou_member += " " + e);
+    document.getElementById("zinrou").textContent = zinrou_member;
+
+    console.log(zinrou);
+    console.log(this_member_list);
+    console.log(this_job);
+
+
+    member_list = shuffle(member_list);
+
+    const first_member = document.getElementById("first_member");
+    let str = "";
+    for (let i = 0; i < member_list.length; i++) {
+      str = (i + 1) + ": " + member_list[i];
+      let list = first_member.querySelectorAll("li")[i];
+      list.textContent = str;
+    }
+
+
   }
 
   function shuffle(arr) {
@@ -132,4 +181,5 @@
     }
     return arr;
   }
+
 }
