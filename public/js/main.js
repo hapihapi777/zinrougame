@@ -1,5 +1,3 @@
-
-
 'use strict';
 {
   // let member_list = GetMember();
@@ -108,13 +106,8 @@
     const first_village = document.getElementById("first_village");
     first_village.classList.remove('nodisp');
 
-    // const member_decision = document.getElementById("member_decision");
     member_decision.disabled = true;
     casting_1.disabled = false;
-
-    // MakeList("first_member");
-    // GetJob("first_member");
-    // GetJob("job_1_0");
   }
 
   function GetJob() {
@@ -142,7 +135,7 @@
       this_job[i].push(this_member_list[i]);
       if (this_job[i][0] === "【占い師】") {
         this_member_list.splice(i, 1);
-        console.log(this_member_list.length);
+        console.log(this_member_list);
         this_job[i].push("(占い先 > " + this_member_list[Math.floor(Math.random() * (this_member_list.length - 1))] + ")");
       }
       for (let j = 0; j < this_job[i].length; j++) {
